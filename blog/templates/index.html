@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h2>Home</h2>
+  {% if session.username %}
+    <h3>Comparte una nueva publicacion</h3>
+    <form action="{{ url_for('add_post') }}" method="post">
+        <dl>
+            <dt>Titulo:</dt>
+            <dd><input type="text" size="30" name="title"></dd>
+            <dt>Tags (separados por comas):</dt>
+            <dd><input type="text" size="30" name="tags"></dd>
+            <dt>Texto:</dt>
+            <dd><textarea name="text" rows="5" cols="40"></textarea></dd>
+        </dl>
+        <input type="submit" value="Share">
+    </form>
+  {% endif %}
+
+<br>
+
+<h3>Los usuarios han publicado hoy</h3>
+{% include "display_posts.html" %}
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<h2>perfil de {{ username }}</h2>
+
+{% if session.username %}
+    {% if session.username == username %}
+        <h3>Usuarios similares a ti:</h3>
+
+          {% for user in similar %}
+            <p>
+            <a href="{{ url_for('profile', username=user.similar_user) }}">{{ user.similar_user }}</a>
+            tambien blogs sobre <i>{{ ", ".join(user.tags) }}</i>
+            </p>
+          {% else %}
+            <p>¡No hay ningún usuario que haya blogueado sobre las mismas etiquetas que tu aun!</p>
+          {% endfor %}
+
+        <h3>Tus publicaciones recientes:</h3>
+
+    {% else %}
+
+  <p>A {{ username }} le han gustado {{ common}} de tus publicaciones y
+      {% if common.tags %}
+      tambien publico sobre <i>{{ ", ".join(common.tags) }}</i>
+      {% else %}
+      no ha publicado aun sobre ninguna de las mismas etiquetas
+      {% endif %}
+  </p>
+
+  <h3>Publicaciones recientes de {{ username }}:</h3>
+
+    {% endif %}
+{% endif %}
+
+{% include "display_posts.html" %}
+
+{% endblock %}
