@@ -1,7 +1,7 @@
 # neo4j-flask
 Una aplicacion de microblog escrita en python utilizando Flask and Neo4j. Basado en la extension, [Flaskr](http://flask.pocoo.org/docs/0.10/tutorial/). 
 
-Se tomo como base el tutorial [Tutorial] (https://neo4j.com/blog/building-python-web-application-using-flask-neo4j/) Pero tuvieron que hacerse algunos cambios sobre la manera en que opera la libreria py2neo. Espero que te sirva
+Se tomo como base el tutorial [Tutorial](https://neo4j.com/blog/building-python-web-application-using-flask-neo4j/) oficial. Pero tuvieron que hacerse algunos cambios sobre la manera en que opera la libreria py2neo. Espero que te sirva
 
 ## Uso
 
