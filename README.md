@@ -8,6 +8,8 @@ Se tomo como base el tutorial [Tutorial](https://neo4j.com/blog/building-python-
 Asegurate primero de que [Neo4j](http://neo4j.com/download/other-releases/) este corriendo sobre tu maquina!
 
 A continuacion los pasos para ponerla a correr en tu maquina:
+
+```
 git clone https://github.com/JessnerMejia/python_projects.git
 cd python_projects/bases_datos 
 pip install virtualenv
