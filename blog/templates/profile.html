@@ -10,7 +10,7 @@
           {% for user in similar %}
             <p>
             <a href="{{ url_for('profile', username=user.similar_user) }}">{{ user.similar_user }}</a>
-            tambien blogs sobre <i>{{ ", ".join(user.tags) }}</i>
+            tambien postearon sobre <i>{{ ", ".join(user.tags) }}</i>
             </p>
           {% else %}
             <p>¡No hay ningún usuario que haya blogueado sobre las mismas etiquetas que tu aun!</p>

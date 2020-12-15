@@ -1,15 +1,14 @@
 from py2neo import Graph, Node, Relationship, NodeMatcher
 from passlib.hash import bcrypt
 from datetime import datetime
-from pandas import DataFrame
 import os
 import uuid
 
 
-passwd = "your_password"
+passwd = "blogjess"
 
-url='http://localhost:7474'
-graph = Graph(url + '/db/data/', password=passwd)
+url='bolt://localhost:7687'
+graph = Graph(url + '/db/blog_jess/', password=passwd)
 
 
 class User:
@@ -89,13 +88,13 @@ class User:
         # Find three users who are most similar to the logged-in user
         # based on tags they've both blogged about.
         query = '''
-        MATCH (you:User)-[:PUBLISHED]->(:Post)<-[:TAGGED]-(tag:Tag),
-              (they:User)-[:PUBLISHED]->(:Post)<-[:TAGGED]-(tag)
-        WHERE you.username = "{}" AND you <> they
+        MATCH (you:User)-[:PUBLISHED]->(:Post)<-[:TAGGED]-(tag:Tag)
+        MATCH (they:User)-[:PUBLISHED]->(:Post)<-[:TAGGED]-(tag2:Tag)
+        WHERE you.username = "{user}" AND you.username <> they.username and tag.name = tag2.name
         WITH they, COLLECT(DISTINCT tag.name) AS tags
         ORDER BY SIZE(tags) DESC LIMIT 3
         RETURN they.username AS similar_user, tags
-        '''.format(self.username)
+        '''.format(user=self.username)
 
         return graph.run(query)
 
